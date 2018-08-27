@@ -1,3 +1,5 @@
-This is a text file used for Git commands.
+This is a text file used for Git commands. (file create)
 
-Modify this file.
+Modify this file. (revision 1 - local)
+
+Modify this file from github site. (revision 2 - server)
