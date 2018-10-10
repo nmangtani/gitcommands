@@ -1,5 +1,219 @@
-This is a text file used for Git commands. (file create)
+# Best Practices
+- Commit early and often
+- Don’t panic
+- Take backups
+- Don’t change published history
+- Do divide work into repositories
+- Security model
+- Release tagging
+- Distributed workflows
+- Branch workflows
+- Do make useful commit messages
+- Do keep up to date
+- Do periodic maintenance
+- Do enforce standards
+- Do use useful tools
+- Do integrate with external tools
+---
+# Git Commands
 
-Modify this file. (revision 1 - local)
+## Git init
+> Initialize a new repository
+---
+## Git status command
+> Check status of repository and contents
+---
+## Git add “Filename” / Git add -A
+> Add the files from stage to the repository
+> New file changes show as untracked files initially, do a git add . to stage them all
+---
+## Git reset “Filename” / Git Reset
+> Remove the files from staging area and show them back as untracked file
+---
+## Git commit –m “Text Message”
+> Commit changes to the repository from stage
+---
+## Git log
+> Check log of commits
+---
+## Git remote add origin "Remote Git Repository URL”
+> Add a link of the local repository to the public repository 
+---
+## Git remote - -v (verify)
+> Verify the link to the remote repository
+---
+## Git pull origin master
+> Gets latest changes from remote repository to your local repository
+---
+## Git push origin master
+> Upload the local repository content on public or remote repository, where origin is remote repository and master is the branch on remote repository
+---
+## Git remote remove origin
+> Unlink local repository from the remote repository
+---
+## Git pull origin master - -allow-unrelated histories
+> In case you want to sync local repository after you switch to another remote repository and they have unrelated history of commits, to do that use command
+---
+## Git branch
+> List all branches in repository
+---
+## Git branch branchname
+## Git checkout branchname
+> Creates a new branch and then checks out that branch, switch to branchname.
+> Alternatively, a short command for the above two commands is:
+---
+## Git checkout -b branchname
+> Creates a new branch with the branchname and switch to branchname.
+---
+## Git push –u origin branchname
+> Push the local branch on remote repository with a branch named branchname
+---
+## Git checkout master
+> Switch to branch named master
+---
+## Git merge branchname
+> Merge local branch to master branch
+---
+## Git push origin master
+> Push local master branch code to remote repo master branch
+---
+## Git branch - -d branchname
+> Deletes local repository branch branchname
+---
+## Git push origin - -delete branchname
+> Deletes remote repository branch branchname
+---
+## Git stash save "Message that identifies work done so far"
+> Will temporarily save your work done in case if you want to switch branches or work on something else based on change in priority and so you can come back later on this task and retrieve your changes
+---
+## Git stash list 
+> Shows list of stashes
+---
+## Git stash apply stash@{0}
+> This command brings your changes from stash list {0} identifies which stash item needs to be brought back. This command does not remove stash item from stash list.
+---
+## Git stash pop
+> This command will bring back the stash item from the top of the list and delete the stash item from stash list.
+---
+## Git stash drop stash@{0}
+> This command deletes the stash item that is mentioned in command from stash list
+---
+## Git stash clear
+> This will remove all items from stash list
+---
+## Git commit --amend -m "New commit text message"
+> This command fixes the commit message from the last commit if in case developer comitted a wrong message and wants to fix it
+> Also if developer forgot to add one file to the last commit, they can do so by using the same command.
+---
+## Git cherry-pick <commit_hash>
+> Move a commit from one branch to other
+> Do a git log to see commit history, copy commit hash key, checkout to other branch, type in the command and it adds that commit to the other branch.
+> Cherry-Pick does not delete the original commit
+---
+## Git reset --soft <commit_hash>
+> This command resets the head to the commit that is given in command
+> Use this to rollback your commit
+> Modifications to files still stay in staging directory
+## Git reset <commit_hash>
+> This command is the default option out of the three reset types. This command resets the head to the commit given in command
+> Use this to rollback your commit
+> Modifications are not lost
+> Untracked files stay as is
+## Git reset --hard <commit_hash>
+> This command resets the head to the commit given in command
+> Use this to rollback your commit
+> You lose the modifications to the code
+> Untracked files stay as is
+---
+## Git clean -df
+> This command cleans up directories and files from untracked changes
+---
+## Git reflog
+>  Shows history of actions that are done to the repository
+> This may come useful if developer has accidentally removed changes which they later realize that they need those changes. 
+> Git garbage collector has approximately 30 day timeline, before a commit gets collected by GC, you may still be having a chance to recover it.
+> Grab the hash of the commit, checkout on that hash, this makes the HEAD in detached state, create a branch on that so you have your changes in a branch.
+Now checkout the previous branch so you make the HEAD in attached state again.
+Now your changes are available in that branch.
+---
+## Git revert <commit_hash>
+> This will reverse the changes back to what it were before the commit_hash. This is more like an undo command on commits. It does not delete commits, but applies a new commit that reverses the changes back to what they were before and adds a new commit to maintain history.
+---
+## Git diff <Commit_Hash1> <Commit_Hash2>
+> This command shows the file changes between two commits
 
-Modify this file from github site. (revision 2 - server)
+## Git rebase (master)
+> This command is helpful to keep the commit line straight and quite useful to avoid merge issues from feature branches to master branch. Assume a developer has been working on a feature branch and in the meantime other developer has added code to master branch. To avoid conflicts and overwrites during merge operation of a feature to master, the developer can do a git rebase master to bring in the changes from master branch and reapply the commits on top of that to the feature branch. Resolve any conflicts that may arise in feature branch itself. Once done and ready to push the feature changes in master, , checkout master branch and do a merge of the feature branch.
+
+
+---
+# Troubleshooting Git
+If you get errors:
+## Git - The revocation function was unable to check revocation for the certificate
+https://stackoverflow.com/questions/45556189/git-the-revocation-function-was-unable-to-check-revocation-for-the-certificate
+---
+## SSL certificate problem: unable to get local issuer certificate
+https://github.com/desktop/desktop/issues/3684
+---
+## Error cloning my private repository
+https://stackoverflow.com/questions/3778042/github-error-cloning-my-private-repository
+---
+# References
+
+## YouTube video tutorials
+
+### Git basics, GitHub and VSTS
+https://www.youtube.com/watch?v=c3482qAzZLQ&t=936s
+---
+### Git command line basics
+https://www.youtube.com/watch?v=HVsySz-h9r4
+---
+### Git Up and Running
+https://www.youtube.com/playlist?list=PLg7s6cbtAD15G8lNyoaYDuKZSKyJrgwB-
+---
+## Use Git Credential Managers to Authenticate to VSTS
+https://docs.microsoft.com/en-us/vsts/repos/git/set-up-credential-managers?view=vsts
+---
+## Use SSH key authentication
+https://docs.microsoft.com/en-us/vsts/repos/git/use-ssh-keys-to-authenticate?view=vsts
+---
+## Managing Deploy Keys
+https://developer.github.com/v3/guides/managing-deploy-keys/
+---
+## Checking for existing SSH keys
+https://help.github.com/articles/checking-for-existing-ssh-keys/
+---
+## Generating a new SSH key and adding it to the ssh-agent
+https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/
+---
+## Basic branching and merging documentation
+https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging
+---
+## Learn Git
+https://www.atlassian.com/git/tutorials/learn-git-with-bitbucket-cloud
+---
+## Pull Requests
+https://resources.github.com/videos/pull-requests-are-king/
+---
+## Git Best Practices
+https://sethrobertson.github.io/GitBestPractices/
+---
+## Undoing, removing commits in git
+http://sethrobertson.github.io/GitFixUm/fixup.html
+---
+## Download book Pro Git
+https://git-scm.com/book/en/v2
+---
+## Gitflow branching model
+https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow
+---
+## Feature branch workflow
+https://www.atlassian.com/git/tutorials/comparing-workflows/feature-branch-workflow
+---
+## Branching model
+https://nvie.com/posts/a-successful-git-branching-model/
+---
+## Best Practices
+https://sethrobertson.github.io/GitBestPractices
+https://www.git-tower.com/learn/git/ebook/en/command-line/appendix/best-practices
+---
